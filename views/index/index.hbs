@@ -1,0 +1,10 @@
+{{> header}}
+<div class="container">
+  <h1>Bienvenido Amigo querido!</h1>
+  {{#usuario}}
+    <p>Nombre = {{ this.nombre }}</p>
+    <p>Apellido = {{ this.apellido }}</p>
+    <p>Email = {{{ this.email }}}</p>
+    <p>Password = {{ this.password }}</p>
+  {{/usuario}}
+</div>
