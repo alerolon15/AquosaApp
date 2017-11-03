@@ -8,12 +8,27 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/',function(req,res){
-
-  req.check('email', 'No es un email valido!').isEmail();
+  /* validaciones del registro */
+  req.check('nombre', 'Ingrese un nombre!').notEmpty();
+  req.check('apellido', 'Ingrese un apellido!').notEmpty();
+  req.check('email', 'Ingrese un email valido!').notEmpty().isEmail();
+  req.check('password', 'La contraseña debe tener al menos 6 caracteres!').notEmpty().isLength({min:6});
+  req.check('password_confirmation', 'Las contraseñas no coinciden!').equals(req.body.password);
   var listaErrores = req.validationErrors();
-  console.log(listaErrores);
+  if (listaErrores) {
+    var mensajes = [];
+    listaErrores.forEach(function(error){
+        mensajes.push(error.msg);
+    });
+    var options = {
+      title: 'Aquosa',
+      errores: mensajes,
+      datos: req.body
+    };
+    return res.render('login/registrarse',options);
+  };
 
-	var email = req.body.email;
+	var email = req.body.email.toLowerCase();
 	var password = req.body.password;
   var nombre = req.body.nombre;
 	var apellido = req.body.apellido;
@@ -43,7 +58,7 @@ router.post('/',function(req,res){
     		console.log(usuario);
         var options = {
           title: 'Aquosa',
-          error: "<div class='alert alert-danger' role='alert'>El Usuario ha sido creado con exito.</div>"
+          error: "<div class='alert alert-success' role='alert'>El Usuario ha sido creado con exito.</div>"
         };
         return res.render('login/registrarse',options);
     	});

@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/login',function(req,res){
 
-	var email = req.body.email;
+	var email = req.body.email.toLowerCase();
 	var password = req.body.password;
 
 	User.findOne({email: email, password: password}, function(err,users){
