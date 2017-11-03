@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var session = require('client-sessions');
+var expressValidator = require('express-validator');
 
 var login = require('./routes/login');
 var index = require('./routes/index');
@@ -36,6 +37,7 @@ app.use('/public', express.static('public'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

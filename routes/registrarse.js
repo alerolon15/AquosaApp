@@ -9,6 +9,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/',function(req,res){
 
+  req.check('email', 'No es un email valido!').isEmail();
+  var listaErrores = req.validationErrors();
+  console.log(listaErrores);
+
 	var email = req.body.email;
 	var password = req.body.password;
   var nombre = req.body.nombre;
@@ -29,7 +33,7 @@ router.post('/',function(req,res){
 			var options = {
 				title: 'Aquosa',
         error: "<div class='alert alert-danger' role='alert'>El mail con el que desea registrarse ya existe.</div>",
-
+        datos: req.body
 			};
 			return res.render('login/registrarse',options);
 		};
