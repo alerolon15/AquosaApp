@@ -12,6 +12,7 @@ var expressValidator = require('express-validator');
 var login = require('./routes/login');
 var index = require('./routes/index');
 var registrarse = require('./routes/registrarse');
+var cambiarPassword = require('./routes/cambiarPassword');
 
 
 var app = express();
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', login);
 app.use('/index', index);
 app.use('/registrarse', registrarse);
+app.use('/cambiarPassword', cambiarPassword);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,5 +64,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
