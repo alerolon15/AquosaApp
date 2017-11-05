@@ -5,7 +5,7 @@ var User = require('../models/user');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if(req.session && req.session.user){
-    res.render('perfil/cambiarPassword', {title : "Aquosa"});
+    res.render('perfil/cambiarPassword', {title : "Aquosa", usuario: req.session.user, bgClass:'bg-dark'});
   }else{
     res.redirect("/")
   }
@@ -25,6 +25,8 @@ router.post('/',function(req,res){
     var options = {
       title: 'Aquosa',
       errores: mensajes,
+      usuario: req.session.user,
+      bgClass:'bg-dark',
       datos: req.body
     };
     return res.render('perfil/cambiarPassword',options);
@@ -49,6 +51,8 @@ router.post('/',function(req,res){
     if(!users) {
 			var options = {
 				title: 'Aquosa',
+        usuario: req.session.user,
+        bgClass:'bg-dark',
         error: "<div class='alert alert-danger' role='alert'>La contraseña anterior es incorrecta.</div>",
 			};
 			return res.render('perfil/cambiarPassword',options);
@@ -62,6 +66,8 @@ router.post('/',function(req,res){
         if(err){console.log(err)};
         var options = {
           title: 'Aquosa',
+          usuario: req.session.user,
+          bgClass:'bg-dark',
           error: "<div class='alert alert-success' role='alert'>La contraseña se cambio correctamente.</div>"
         };
         return res.render('perfil/cambiarPassword',options);

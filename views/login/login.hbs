@@ -1,57 +1,26 @@
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<div class="container grayBackground">
-  <h1>Bienvenido a {{title}}</h1>
-    <div class="omb_login">
-      <h3 class="omb_authTitle">Ingresar o <a href="/registrarse">Registrarse</a></h3>
-		<div class="row omb_row-sm-offset-3 omb_socialButtons">
-    	<div class="col-xs-4 col-sm-2">
-		      <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
-			       <i class="fa fa-facebook visible-xs"></i>
-			       <span class="hidden-xs">Facebook</span>
-		      </a>
-	    </div>
-      <div class="col-xs-4 col-sm-2">
-		      <a href="#" class="btn btn-lg btn-block omb_btn-twitter">
-			      <i class="fa fa-twitter visible-xs"></i>
-			      <span class="hidden-xs">Twitter</span>
-		      </a>
-	    </div>
-      <div class="col-xs-4 col-sm-2">
-		      <a href="#" class="btn btn-lg btn-block omb_btn-google">
-			          <i class="fa fa-google-plus visible-xs"></i>
-			          <span class="hidden-xs">Google+</span>
-		      </a>
-	    </div>
-		</div>
-		<div class="row omb_row-sm-offset-3 omb_loginOr">
-			<div class="col-xs-12 col-sm-6">
-				<hr class="omb_hrOr">
-			</div>
-		</div>
-		<div class="row omb_row-sm-offset-3">
-			<div class="col-xs-12 col-sm-6">
-			    <form class="omb_loginForm" action="/login" autocomplete="off" method="POST">
-					<div class="input-group">
-						<span class="input-group-addon"><i class="fa fa-user"></i></span>
-						<input type="text" class="form-control" name="email" placeholder="email">
-					</div>
-					<span class="help-block"></span>
-					<div class="input-group">
-						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-						<input  type="password" class="form-control" name="password" placeholder="Password">
-					</div>
-          {{{error}}}
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header">Bienvenido a {{title}}</div>
+      <div class="card-body">
+        <form action="/login" autocomplete="off" method="POST">
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input class="form-control" name="email" type="email" aria-describedby="emailHelp" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input class="form-control" name="password" type="password" placeholder="Contraseña">
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
           <hr>
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-				</form>
-			</div>
+          {{{error}}}
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" href="/registrarse">Registrate</a>
+          <br>
+          <a class="d-block small" href="/recuperar">Olvidaste la Contraseña ?</a>
+        </div>
+      </div>
     </div>
-		<div class="row">
-			<div class="col-xs-12 col-sm-3 col-xs-offset-3 col-md-offset-2">
-				<p class="omb_forgotPwd">
-					<a href="#">No recuerdas tu contraseña?</a>
-				</p>
-			</div>
-		</div>
-	</div>
-</div>
+  </div>

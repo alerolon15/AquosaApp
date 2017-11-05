@@ -13,6 +13,7 @@ var login = require('./routes/login');
 var index = require('./routes/index');
 var registrarse = require('./routes/registrarse');
 var cambiarPassword = require('./routes/cambiarPassword');
+var recuperar = require('./routes/recuperar');
 
 
 var app = express();
@@ -33,6 +34,7 @@ app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 app.use('/public', express.static('public'));
 
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -46,6 +48,7 @@ app.use('/', login);
 app.use('/index', index);
 app.use('/registrarse', registrarse);
 app.use('/cambiarPassword', cambiarPassword);
+app.use('/recuperar', recuperar);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -53,6 +56,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {

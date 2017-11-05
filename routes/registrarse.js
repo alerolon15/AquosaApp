@@ -4,7 +4,7 @@ var User = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login/registrarse', {title : "Aquosa"});
+  res.render('login/registrarse', {title : "Aquosa", bgClass:'bg-dark'});
 });
 
 router.post('/',function(req,res){
@@ -23,6 +23,7 @@ router.post('/',function(req,res){
     var options = {
       title: 'Aquosa',
       errores: mensajes,
+      bgClass:'bg-dark',
       datos: req.body
     };
     return res.render('login/registrarse',options);
@@ -48,6 +49,7 @@ router.post('/',function(req,res){
 			var options = {
 				title: 'Aquosa',
         error: "<div class='alert alert-danger' role='alert'>El mail con el que desea registrarse ya existe.</div>",
+        bgClass:'bg-dark',
         datos: req.body
 			};
 			return res.render('login/registrarse',options);
@@ -58,6 +60,7 @@ router.post('/',function(req,res){
     		console.log(usuario);
         var options = {
           title: 'Aquosa',
+          bgClass:'bg-dark',
           error: "<div class='alert alert-success' role='alert'>El Usuario ha sido creado con exito.</div>"
         };
         return res.render('login/registrarse',options);

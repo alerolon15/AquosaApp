@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   req.session.reset();
-  res.render('login/login', { title: 'Aquosa' });
+  res.render('login/login', { title: 'Aquosa', bgClass:'bg-dark' });
 });
 
 router.post('/login',function(req,res){
@@ -23,6 +24,7 @@ router.post('/login',function(req,res){
 			req.session.reset();
 			var options = {
 				title: 'Aquosa',
+        bgClass:'bg-dark',
         error: "<div class='alert alert-danger' role='alert'>El usuario o la contraseña no son correctas</div>"
 			}
 			return res.render('login/login',options)
