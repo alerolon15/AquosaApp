@@ -22,23 +22,24 @@ var storage = multer.diskStorage({
 
 var upload = multer({
   storage: storage
-  //dest: path.join(__dirname, '../public/')
 });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(req.session && req.session.user){
+  if(req.session && req.session.user && req.session.user.esAdmin){
     var inicialN = req.session.user.nombre.substring(0,1);
     var inicialA = req.session.user.apellido.substring(0,1);
     var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
     req.session.user.iniciales = iniciales;
 
     res.render('productos/crear', { usuario: req.session.user, bgClass:'bg-dark'});
+  }else{
+    res.redirect('/index');
   };
 });
 
 router.post('/', upload.array('files', 8), function(req, res, next) {
-  if(req.session && req.session.user){
+  if(req.session && req.session.user && req.session.user.esAdmin){
     var inicialN = req.session.user.nombre.substring(0,1);
     var inicialA = req.session.user.apellido.substring(0,1);
     var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
@@ -69,7 +70,7 @@ router.post('/', upload.array('files', 8), function(req, res, next) {
     var titulo = req.body.titulo;
     var descripcion = req.body.descripcion;
     var precio = req.body.precio;
-    var categoria = req.body.categoria;
+    var categoria = req.body.categoria.toLowerCase();
     var imagenes = [];
 
     if(req.files){
@@ -109,6 +110,8 @@ router.post('/', upload.array('files', 8), function(req, res, next) {
         });
       };
     });
+  }else{
+    res.redirect('/index');
   };
 });
 

@@ -45,18 +45,27 @@
               {{#each productos}}
               <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                  <a href="#"><img class="card-img-top" src="public/images/productos/{{ this.imagenes.[0] }}" alt=""></a>
-                  <div class="card-body">
-                    <hr>
-                    <h4 class="card-title">
-                      <a href="#">{{ this.titulo }}</a>
-                    </h4>
-                    <p class="card-text">{{ this.descripcion }}!</p>
-                    <h5>${{ this.precio }}</h5>
+                  <img style="margin: 0 auto;" src="public/images/productos/{{ this.imagenes.[0] }}">
+                  <hr>
+                  <div class="info">
+                    <div class="row">
+                        <div class="price col-md-6">
+                            <h5>
+                                Sample Product</h5>
+                            <h5 class="price-text-color">
+                                $199.99</h5>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                    </div>
                   </div>
                   <div class="card-footer">
-                    <a class="btn btn-danger btn-block" href="#">Comprar</a>
-                    <a class="btn btn-default btn-block" href="#">Ver Info</a>
+                    <div class="col-md-6">
+                      <a class="btn btn-danger" href="#">Comprar</a>
+                    </div>
+                    <div class="col-md-6">
+                      <a class="btn btn-default" href="#">Ver Info</a>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -16,6 +16,7 @@ var registrarse = require('./routes/registrarse');
 var cambiarPassword = require('./routes/cambiarPassword');
 var recuperar = require('./routes/recuperar');
 var crearProducto = require('./routes/crearProducto');
+var listaProducto = require('./routes/listaProducto');
 
 
 var app = express();
@@ -55,6 +56,7 @@ app.use('/registrarse', registrarse);
 app.use('/cambiarPassword', cambiarPassword);
 app.use('/recuperar', recuperar);
 app.use('/crearProducto', crearProducto);
+app.use('/listaProducto', listaProducto);
 
 
 // catch 404 and forward to error handler
