@@ -37,6 +37,9 @@ html, body {
 	border-radius: 100%;
 	padding: 8px;
 }
+.fill {
+	height: 100vh;
+}
 /*  login  */
 .card-login {
     max-width: 25rem;
@@ -302,6 +305,6 @@ html, body {
     width: 100%;
   }
 	.botonReg {
-		margin-top: 100px;
+		margin-top: 20px;
 	}
 }

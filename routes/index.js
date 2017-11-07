@@ -12,7 +12,18 @@ router.get('/', function(req, res, next) {
     req.session.user.iniciales = iniciales;
 
     Producto.find({}, function(err, productos){
-      res.render('index/index', { usuario: req.session.user, productos: productos});
+      var categorias = [];
+      productos.forEach(function(prod){
+          categorias.push(prod.categoria);
+      });
+      console.log(categorias);
+      var categoriasV = [];
+      categorias.forEach(function(cate) {
+        if(categoriasV.indexOf(cate) === -1) {
+          categoriasV.push(cate);
+        }
+      });
+      res.render('index/index', { usuario: req.session.user, productos: productos, categorias: categoriasV});
     });
   }else{
     res.redirect("/")

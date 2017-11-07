@@ -3,12 +3,12 @@ var Producto = require('../models/producto');
 mongoose.connect('localhost:27017/Aquosa');
 
 var codigo = "mtr03"
-var titulo = "Mistral buzo negro";
-var descripcion = "Productos en promocion";
-var precio = 1200;
+var titulo = "Mistral remera";
+var descripcion = "remera azul";
+var precio = 350;
 var categoria = "Remeras";
 var imagenes = [];
-    imagenes.push("public/images/productos/producto3-1.jpg", "public/images/productos/producto3-2.jpg");
+    imagenes.push("public/images/productos/producto3-1.jpg", "public/images/productos/producto3-2.jpg", "public/images/productos/producto3-3.jpg");
 
 
 var data = {

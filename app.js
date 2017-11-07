@@ -8,12 +8,14 @@ var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var session = require('client-sessions');
 var expressValidator = require('express-validator');
+var multer = require('multer');
 
 var login = require('./routes/login');
 var index = require('./routes/index');
 var registrarse = require('./routes/registrarse');
 var cambiarPassword = require('./routes/cambiarPassword');
 var recuperar = require('./routes/recuperar');
+var crearProducto = require('./routes/crearProducto');
 
 
 var app = express();
@@ -44,11 +46,16 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
 app.use('/', login);
 app.use('/index', index);
 app.use('/registrarse', registrarse);
 app.use('/cambiarPassword', cambiarPassword);
 app.use('/recuperar', recuperar);
+app.use('/crearProducto', crearProducto);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -68,6 +75,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 
 module.exports = app;
