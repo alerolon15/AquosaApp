@@ -17,6 +17,9 @@ var cambiarPassword = require('./routes/cambiarPassword');
 var recuperar = require('./routes/recuperar');
 var crearProducto = require('./routes/crearProducto');
 var listaProducto = require('./routes/listaProducto');
+var infoProducto = require('./routes/infoProducto');
+var agregarCarrito = require('./routes/agregarCarrito');
+var carrito = require('./routes/carrito');
 
 
 var app = express();
@@ -57,6 +60,9 @@ app.use('/cambiarPassword', cambiarPassword);
 app.use('/recuperar', recuperar);
 app.use('/crearProducto', crearProducto);
 app.use('/listaProducto', listaProducto);
+app.use('/infoProducto', infoProducto);
+app.use('/agregarCarrito', agregarCarrito);
+app.use('/carrito', carrito);
 
 
 // catch 404 and forward to error handler

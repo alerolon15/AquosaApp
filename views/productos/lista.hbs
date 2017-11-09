@@ -1,10 +1,11 @@
-<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
 {{>header }}
 <div class="container" style="margin-top:50px;">
   <h2>Productos</h2>
   <p>Lista de productos en Stock</p>
+  {{{error}}}
   <table class="table table-striped">
     <thead>
       <tr style="text-align: left;">
@@ -24,8 +25,8 @@
           <td style="text-align: left;">{{this.categoria}}</td>
           <td style="text-align: left;">{{this.cantidad}}</td>
           <td>
-            <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button>
-            <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Borrar"><span class="glyphicon glyphicon-remove"></span></button>
+            <a href="/listaProducto/editar/{{ this._id }}"><button  class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button></a>
+            <a href="/listaProducto/borrar/{{ this._id }}" onclick="return confirm('Esta seguro que desea borrar este producto?')"><button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Borrar"><span class="glyphicon glyphicon-remove"></span></button></a>
           </td>
         </tr>
       {{/each }}
