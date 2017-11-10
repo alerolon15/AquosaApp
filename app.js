@@ -10,16 +10,16 @@ var session = require('client-sessions');
 var expressValidator = require('express-validator');
 var multer = require('multer');
 
-var login = require('./routes/login');
+var login = require('./routes/user/login');
 var index = require('./routes/index');
-var registrarse = require('./routes/registrarse');
-var cambiarPassword = require('./routes/cambiarPassword');
-var recuperar = require('./routes/recuperar');
-var crearProducto = require('./routes/crearProducto');
-var listaProducto = require('./routes/listaProducto');
-var infoProducto = require('./routes/infoProducto');
-var agregarCarrito = require('./routes/agregarCarrito');
-var carrito = require('./routes/carrito');
+var registrarse = require('./routes/user/registrarse');
+var cambiarPassword = require('./routes/user/cambiarPassword');
+var recuperar = require('./routes/user/recuperar');
+var crearProducto = require('./routes/productos/crearProducto');
+var listaProducto = require('./routes/productos/listaProducto');
+var infoProducto = require('./routes/productos/infoProducto');
+var agregarCarrito = require('./routes/carrito/agregarCarrito');
+var carrito = require('./routes/carrito/carrito');
 
 
 var app = express();

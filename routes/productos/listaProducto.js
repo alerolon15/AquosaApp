@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
-var Producto = require('../models/producto');
+var User = require('../../models/user');
+var Producto = require('../../models/producto');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -72,6 +72,7 @@ router.post('/editar/:id', function(req, res, next) {
     req.check('descripcion', 'Ingrese una descripcion!').notEmpty()
     req.check('precio', 'Ingrese un precio!').notEmpty()
     req.check('categoria', 'Ingrese una categoria!').notEmpty()
+    req.check('cantidad', 'Ingrese una cantidad!').notEmpty()
     var listaErrores = req.validationErrors();
 
     if (listaErrores) {
@@ -96,6 +97,7 @@ router.post('/editar/:id', function(req, res, next) {
       var titulo = req.body.titulo;
       var descripcion = req.body.descripcion;
       var precio = req.body.precio;
+      var cantidad = req.body.cantidad.toLowerCase();
       var categoria = req.body.categoria.toLowerCase();
 
       var data = {
@@ -103,6 +105,7 @@ router.post('/editar/:id', function(req, res, next) {
         titulo,
         descripcion,
         precio,
+        cantidad,
         categoria
       };
 

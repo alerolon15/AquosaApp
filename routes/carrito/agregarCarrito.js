@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
-var Producto = require('../models/producto');
-var Carrito = require('../models/carrito');
+var User = require('../../models/user');
+var Producto = require('../../models/producto');
+var Carrito = require('../../models/carrito');
 
 router.get('/:id', function(req, res, next) {
     var productId = req.params.id;

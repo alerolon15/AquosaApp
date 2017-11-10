@@ -3,8 +3,8 @@ var router = express.Router();
 var path = require('path');
 var multer = require('multer');
 
-var User = require('../models/user');
-var Producto = require('../models/producto');
+var User = require('../../models/user');
+var Producto = require('../../models/producto');
 
 var rutaUpload = path.join(__dirname, '../public/images/productos');
 
@@ -51,6 +51,7 @@ router.post('/', upload.array('files', 8), function(req, res, next) {
     req.check('descripcion', 'Ingrese una descripcion!').notEmpty()
     req.check('precio', 'Ingrese un precio!').notEmpty()
     req.check('categoria', 'Ingrese una categoria!').notEmpty()
+    req.check('cantidad', 'Ingrese una cantidad!').notEmpty()
     var listaErrores = req.validationErrors();
     if (listaErrores) {
       var mensajes = [];
@@ -71,6 +72,7 @@ router.post('/', upload.array('files', 8), function(req, res, next) {
     var descripcion = req.body.descripcion;
     var precio = req.body.precio;
     var categoria = req.body.categoria.toLowerCase();
+    var cantidad = req.body.cantidad.toLowerCase();
     var imagenes = [];
 
     if(req.files){
@@ -89,6 +91,7 @@ router.post('/', upload.array('files', 8), function(req, res, next) {
       descripcion,
       precio,
       categoria,
+      cantidad,
       imagenes
     };
 

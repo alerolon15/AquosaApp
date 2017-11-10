@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
+var User = require('../../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -57,7 +57,7 @@ router.post('/',function(req,res){
 		if(!users) {
       var usuario = new User(data);
       usuario.save(function(err){
-    		console.log(usuario);
+    		
         var options = {
           title: 'Aquosa',
           bgClass:'bg-dark',

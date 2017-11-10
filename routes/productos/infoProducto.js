@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
-var Producto = require('../models/producto');
+var User = require('../../models/user');
+var Producto = require('../../models/producto');
 
 /* GET home page. */
 router.get('/:id', function(req, res, next) {
