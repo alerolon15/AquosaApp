@@ -6,7 +6,7 @@ var multer = require('multer');
 var User = require('../../models/user');
 var Producto = require('../../models/producto');
 
-var rutaUpload = path.join(__dirname, '../public/images/productos');
+var rutaUpload = path.join(__dirname, '../../public/images/productos');
 
 var nombres = [];
 var storage = multer.diskStorage({

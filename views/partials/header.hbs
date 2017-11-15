@@ -12,26 +12,35 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        {{#usuario}}
-        <li><a href="/index">Bienvenido {{ this.nombre }}!</a></li>
-        <li>
-          <a href="/carrito">Carrito <span id="badge" class="badge">{{ this.carrito.totalQty }}</span></a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="logo">{{ this.iniciales }}</span> <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            {{#if this.esAdmin }}
-              <li><a href="/crearProducto">Crear Productos</a></li>
-              <li><a href="/listaProducto">Ver lista de Productos</a></li>
-            {{/if}}
-            <li><a href="/cambiarPassword">Cambiar Contraseña</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/">Cerrar Sesión</a></li>
-        {{/usuario}}
-          </ul>
-        </li>
-      </ul>
+      {{#usuario}}
+        <ul class="nav navbar-nav navbar-left">
+          {{#if this.esAdmin }}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar productos <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/crearProducto">Crear Productos</a></li>
+                <li><a href="/listaProducto">Ver lista de Productos</a></li>
+            </ul>
+          </li>
+          {{/if}}
+        </ul>
+      {{/usuario}}
+      {{#usuario}}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/index">Bienvenido {{ this.nombre }}!</a></li>
+          <li>
+            <a href="/carrito"><span class="glyphicon glyphicon-shopping-cart"></span> <span id="badge" class="badge"> {{ this.carrito.totalQty }}</span></a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="logo">{{ this.iniciales }}</span> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/cambiarPassword">Cambiar Contraseña</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      {{/usuario}}
     </div>
   </div>
 </nav>
@@ -45,7 +54,6 @@
         <hr>
         <button type="button" class="btn btn-success" class="close" data-dismiss="modal" aria-label="Close">OK</button>
       </div>
-
     </div><!-- /.modal-content -->
   </div>
 </div>

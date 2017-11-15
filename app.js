@@ -9,6 +9,9 @@ var mongoose = require('mongoose');
 var session = require('client-sessions');
 var expressValidator = require('express-validator');
 var multer = require('multer');
+var request = require('request');
+
+
 
 var login = require('./routes/user/login');
 var index = require('./routes/index');
@@ -25,7 +28,7 @@ var carrito = require('./routes/carrito/carrito');
 var app = express();
 
 // mongoose conexion
-mongoose.connect('localhost:27017/Aquosa');
+mongoose.createConnection('localhost:27017/Aquosa');
 
 //sesiones
 app.use(session({

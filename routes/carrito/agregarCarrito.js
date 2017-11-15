@@ -16,6 +16,8 @@ router.get('/:id', function(req, res, next) {
         req.session.user.carrito = carrito;
         res.send(req.session.user.carrito);
         //res.redirect('/index');
+        var carritoString = JSON.stringify(carrito);
+        console.log(carritoString);
     });
 });
 
