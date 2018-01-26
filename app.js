@@ -28,7 +28,7 @@ var carrito = require('./routes/carrito/carrito');
 var app = express();
 
 // mongoose conexion
-mongoose.createConnection('localhost:27017/Aquosa');
+mongoose.connect('localhost:27017/Aquosa');
 
 //sesiones
 app.use(session({
