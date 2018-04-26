@@ -12,6 +12,7 @@
               				<th>Imagen</th>
               				<th>Titulo</th>
               				<th>Categoria</th>
+                      <th>Stock</th>
               				<th>Cantidad</th>
                       <th>Acciones</th>
               				<th>Precio por unidad</th>
@@ -24,6 +25,7 @@
               				<td class="tdCarrito" style="vertical-align: middle;" class="muted center_text"><a href="/infoProducto/{{this.item._id}}"><img class="img-responsive" style="margin: 0 auto;" width="60px" src="public/images/productos/{{ this.item.imagenes.[0] }}"></a></td>
               				<td class="tdCarrito" style="vertical-align: middle;">{{ this.item.titulo }}</td>
               				<td class="tdCarrito" style="vertical-align: middle;">{{ this.item.categoria }}</td>
+                      <td class="tdCarrito" style="vertical-align: middle;">{{ this.item.cantidad }}</td>
               				<td class="tdCarrito" style="vertical-align: middle;"><input type="text" placeholder="{{ this.qty }}" class="input-mini"></td>
                       <td class="tdCarrito" style="vertical-align: middle;">
                         <a class="btn btn-primary btn-block" href="/carrito/reduce/{{this.item._id}}">Remover 1</a></li>
@@ -40,6 +42,7 @@
             				<td>&nbsp;</td>
             				<td>&nbsp;</td>
             				<td>&nbsp;</td>
+                    <td>&nbsp;</td>
             				<td><strong>${{ totalPrice }}.-</strong></td>
             			  </tr>
             			</tbody>

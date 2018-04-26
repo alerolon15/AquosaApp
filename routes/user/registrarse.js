@@ -57,7 +57,14 @@ router.post('/',function(req,res){
 		if(!users) {
       var usuario = new User(data);
       usuario.save(function(err){
-    		
+    		if(err){
+          var options = {
+            title: 'Aquosa',
+            bgClass:'bg-dark',
+            error: "<div class='alert alert-success' role='alert'>No se pudo crear el usuario.</div>"
+          };
+          return res.render('login/registrarse',options);
+        }
         var options = {
           title: 'Aquosa',
           bgClass:'bg-dark',

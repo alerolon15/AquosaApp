@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
       productos.forEach(function(prod){
           categorias.push(prod.categoria);
       });
-      
+
       var categoriasV = [];
       categorias.forEach(function(cate) {
         if(categoriasV.indexOf(cate) === -1) {

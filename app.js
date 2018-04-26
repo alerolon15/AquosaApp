@@ -24,11 +24,16 @@ var infoProducto = require('./routes/productos/infoProducto');
 var agregarCarrito = require('./routes/carrito/agregarCarrito');
 var carrito = require('./routes/carrito/carrito');
 
-
 var app = express();
 
 // mongoose conexion
-mongoose.connect('localhost:27017/Aquosa');
+mongoose.connect('mongodb://localhost:27017/Aquosa',{useMongoClient: true});
+mongoose.connection.on('error', function(err){
+	console.log(' \x1b[41m%s\x1b[0m','Error al intentar conectar con MongoDB.', 'Mensaje: ' + err.message);
+	process.exit();
+});
+// esta linea crea el usuario Administrador
+var crear = require('./models/crearUsuarioAdmin');
 
 //sesiones
 app.use(session({

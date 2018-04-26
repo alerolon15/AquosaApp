@@ -7,6 +7,7 @@ var titulo = "Mistral remera";
 var descripcion = "remera azul";
 var precio = 350;
 var categoria = "Remeras";
+var cantidad = 20
 var imagenes = [];
     imagenes.push("public/images/productos/producto3-1.jpg", "public/images/productos/producto3-2.jpg", "public/images/productos/producto3-3.jpg");
 
@@ -17,6 +18,7 @@ var data = {
   descripcion,
   precio,
   categoria,
+  cantidad,
   imagenes
 };
 
