@@ -22,7 +22,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
-    
+
     <script type="text/javascript">
       function cargarCarrito(id) {
         console.log(id);
@@ -37,6 +37,26 @@
                 $('#modalito').click();
 
                 document.getElementsByClassName('badge')[0].innerText = result.totalQty;
+              };
+            }
+        });
+      };
+    </script>
+    <script type="text/javascript">
+      function infoPedido(id) {
+        var direccion = "/infoPedido/" + id
+        $.ajax(
+          {
+            url: direccion,
+            type: 'GET',
+            result: JSON.stringify(id),
+            success: function(result){
+              if(result) {
+                $('#modalitoP').click();
+                console.log(result);
+                //document.getElementsByClassName('Nombre')[0].innerText = JSON.stringify(result.nombre);
+                document.getElementsByClassName('pedidoJson')[0].innerText = result.pedido._id;
+                document.getElementsByClassName('usuarioJson')[0].innerText = result.usuario.nombre;
               };
             }
         });

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../../models/user');
-var Producto = require('../../models/producto');
+var Pedido = require('../../models/pedido');
 
 
 /* GET home page. */
@@ -12,9 +12,18 @@ router.get('/', function(req, res, next) {
     var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
     req.session.user.iniciales = iniciales;
 
-    Producto.find({}, function(err, productos){
-      console.log(productos);
-      res.render('productos/lista', { usuario: req.session.user, productos: productos});
+    Pedido.find({}, function(err, pedidos){
+      if (pedidos.length != 0) {
+        pedidos.forEach(function(pedi){
+          User.findById(pedi.userID, function(err, usuario){
+            pedi.usuario = usuario;
+          });
+        });
+      }else{
+        pedidos: null;
+      };
+      console.log(pedidos);
+      res.render('pedidos/lista', { usuario: req.session.user, pedidos: pedidos});
     });
   }else{
     res.redirect("/index")
@@ -28,12 +37,12 @@ router.get('/borrar/:id', function(req, res, next) {
     var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
     req.session.user.iniciales = iniciales;
 
-    var productoBorrar = req.params.id;
-    Producto.findByIdAndRemove(productoBorrar, function(err, producto){
+    var pedidoBorrar = req.params.id;
+    Pedido.findByIdAndRemove(pedidoBorrar, function(err, pedido){
       if(err) {
         console.log(err);
       };
-      res.redirect('/listaProducto');
+      res.redirect('/listaPedido');
     });
   }else{
     res.redirect("/index")
@@ -47,12 +56,12 @@ router.get('/editar/:id', function(req, res, next) {
     var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
     req.session.user.iniciales = iniciales;
 
-    var productoEditar = req.params.id;
-    Producto.findById(productoEditar, function(err, producto){
+    var pedidoEditar = req.params.id;
+    Pedido.findById(pedidoEditar, function(err, pedido){
       if(err) {
         console.log(err);
       };
-      res.render('productos/editar', { usuario: req.session.user, producto: producto});
+      res.render('pedidos/editar', { usuario: req.session.user, pedido: pedido});
     });
   }else{
     res.redirect("/index")
@@ -66,7 +75,7 @@ router.post('/editar/:id', function(req, res, next) {
     var iniciales = inicialN.toUpperCase() + inicialA.toUpperCase();
     req.session.user.iniciales = iniciales;
 
-    var productoId = req.params.id;
+    var pedidoId = req.params.id;
 
     /* validaciones del registro */
     req.check('codigo', 'Ingrese un codigo!').notEmpty();
@@ -82,16 +91,16 @@ router.post('/editar/:id', function(req, res, next) {
       listaErrores.forEach(function(error){
           mensajes.push(error.msg);
       });
-      Producto.findById(productoId, function(err, prod){
+      Pedido.findById(pedidoId, function(err, pedi){
 
         var options = {
           title: 'Aquosa',
           errores: mensajes,
           bgClass:'bg-dark',
-          producto: prod
+          pedido: pedi
         }
 
-        res.render('productos/editar',options);
+        res.render('pedidos/editar',options);
         });
     }else{
 
@@ -111,22 +120,22 @@ router.post('/editar/:id', function(req, res, next) {
         categoria
       };
 
-      var producto = new Producto(data);
-      Producto.findByIdAndUpdate(productoId, data, function(err){
+      var pedido = new Pedido(data);
+      Pedido.findByIdAndUpdate(pedidoId, data, function(err){
         if (err) {
-          Producto.find({}, function(err, productos){
-            res.render('productos/lista', {
+          Pedido.find({}, function(err, pedidos){
+            res.render('pedidos/lista', {
               usuario: req.session.user,
-              productos: productos,
-              error: "<div class='alert alert-danger' role='alert'>no se ha podido modificar correctamente el producto.</div>"
+              pedidos: pedidos,
+              error: "<div class='alert alert-danger' role='alert'>no se ha podido modificar correctamente el pedido.</div>"
              });
           });
         } else {
-          Producto.find({}, function(err, productos){
-            res.render('productos/lista', {
+          Pedido.find({}, function(err, pedidos){
+            res.render('pedidos/lista', {
               usuario: req.session.user,
-              productos: productos,
-              error: "<div class='alert alert-success' role='alert'>Se ha modificado correctamente el producto.</div>"
+              pedidos: pedidos,
+              error: "<div class='alert alert-success' role='alert'>Se ha modificado correctamente el pedido.</div>"
              });
           });
         };

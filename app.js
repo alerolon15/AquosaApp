@@ -21,6 +21,9 @@ var recuperar = require('./routes/user/recuperar');
 var crearProducto = require('./routes/productos/crearProducto');
 var listaProducto = require('./routes/productos/listaProducto');
 var infoProducto = require('./routes/productos/infoProducto');
+var listaPedido = require('./routes/pedidos/listaPedido');
+var infoPedido = require('./routes/pedidos/infoPedido');
+var crearPedido = require('./routes/pedidos/crearPedido');
 var agregarCarrito = require('./routes/carrito/agregarCarrito');
 var carrito = require('./routes/carrito/carrito');
 
@@ -69,6 +72,9 @@ app.use('/recuperar', recuperar);
 app.use('/crearProducto', crearProducto);
 app.use('/listaProducto', listaProducto);
 app.use('/infoProducto', infoProducto);
+app.use('/crearPedido', crearPedido);
+app.use('/listaPedido', listaPedido);
+app.use('/infoPedido', infoPedido);
 app.use('/agregarCarrito', agregarCarrito);
 app.use('/carrito', carrito);
 
