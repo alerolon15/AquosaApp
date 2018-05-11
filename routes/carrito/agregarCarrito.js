@@ -12,12 +12,12 @@ router.get('/:id', function(req, res, next) {
        if (err) {
            return res.redirect('/index');
        }
-        carrito.add(producto, producto.id);
-        req.session.user.carrito = carrito;
-        res.send(req.session.user.carrito);
-        //res.redirect('/index');
-        var carritoString = JSON.stringify(carrito);
-        console.log(carritoString);
+       carrito.add(producto, producto.id);
+       req.session.user.carrito = carrito;
+       res.send(req.session.user.carrito);
+       //res.redirect('/index');
+       //var carritoString = JSON.stringify(carrito);
+       //console.log(carritoString);
     });
 });
 

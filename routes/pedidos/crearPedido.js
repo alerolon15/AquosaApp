@@ -85,10 +85,13 @@ router.post('/', function(req, res, next) {
       carrito,
       userID,
       direccion,
+      tipoPago,
+      tipoEntrega,
       pagado,
       entregado,
       fechaPedido,
-      fechaEntrega
+      fechaEntrega,
+      factura
     };
 
     var pedido = new Pedido(data);
@@ -103,6 +106,7 @@ router.post('/', function(req, res, next) {
         });
       }
       else {
+        req.session.user.carrito = [];
         res.redirect('/index');
       };
     });

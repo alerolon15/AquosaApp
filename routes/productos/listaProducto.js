@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     req.session.user.iniciales = iniciales;
 
     Producto.find({}, function(err, productos){
-      console.log(productos);
+      //console.log(productos);
       res.render('productos/lista', { usuario: req.session.user, productos: productos});
     });
   }else{

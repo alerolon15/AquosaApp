@@ -46,15 +46,91 @@
 
 <button type="button" class="btn btn-primary hide" id="modalitoP" data-toggle="modal" data-target=".bs-modal-pedido">Small modal</button>
 <div class="modal fade bs-modal-pedido" id="modalAviso" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-lg" style="margin:10% auto;" role="document">
+  <div class="modal-dialog modal-lg" style="margin:13% auto;" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <p class="pedidoJson"></p>
-        <p class="usuarioJson"></p>
+        <table class="table table-striped">
+        	<thead>
+        	  <tr style="text-align: left;">
+        		<th></th>
+        		<th></th>
+        	  </tr>
+        	</thead>
+        	<tbody>
+            <tr class="fechaPedido" style="text-align:left;"></tr>
+        	  <tr class="usuarioNombre" style="text-align:left;"></tr>
+            <tr class="usuarioEmail" style="text-align:left;"></tr>
+            <tr class="pedidoDireccion" style="text-align:left;"></tr>
+            <tr class="pedidoTipoPago" style="text-align:left;"></tr>
+            <tr class="pedidoPagado" style="text-align:left;"></tr>
+            <tr class="pedidoTipoEntrega" style="text-align:left;"></tr>
+            <tr class="pedidoEntregado" style="text-align:left;"></tr>
+            <tr class="pedidoFactura" style="text-align:left;"></tr>
+            <tr class="pedidoFechaEntrega" style="text-align:left;"></tr>
+            <tr class="pedidoPrecioTotal" style="text-align:left;"></tr>
+        	</tbody>
+        </table>
         <hr>
+        <table class="table table-striped">
+          <p>lista de productos pedidos</p>
+        	<thead>
+        	  <tr>
+              <th>Codigo</th>
+          		<th>Titulo</th>
+              <th>Categoria</th>
+          		<th>Cantidad</th>
+              <th>Precio</th>
+        	  </tr>
+        	</thead>
+        	<tbody class="listaPedidos">
+        	</tbody>
+        </table>
         <button type="button" class="btn btn-success" class="close" data-dismiss="modal" aria-label="Close">OK</button>
       </div>
     </div><!-- /.modal-content -->
   </div>
 </div>
+
+<script type="text/javascript">
+  function infoPedido(id) {
+    var direccion = "/infoPedido/" + id
+    $.ajax(
+      {
+        url: direccion,
+        type: 'GET',
+        result: JSON.stringify(id),
+        success: function(result){
+          if(result) {
+            $('#modalitoP').click();
+            //console.log(result.pedido.carrito[0]);
+            document.getElementsByClassName('fechaPedido')[0].innerHTML = '<td style="text-align:left;"><strong>Fecha del pedido:</strong></td><td> '  + result.pedido.fechaPedido + '</td>';
+            document.getElementsByClassName('usuarioNombre')[0].innerHTML = '<td style="text-align:left;"><strong>Usuario:</strong></td><td> '  + result.usuario.nombre + " " + result.usuario.apellido + '</td>';
+            document.getElementsByClassName('usuarioEmail')[0].innerHTML = '<td style="text-align:left;"><strong>Email:</strong></td><td> '  + result.usuario.email + '</td>';
+            document.getElementsByClassName('pedidoDireccion')[0].innerHTML = '<td style="text-align:left;"><strong>Direccion:</strong></td><td> '  + result.pedido.direccion + '</td>';
+            document.getElementsByClassName('pedidoTipoPago')[0].innerHTML = '<td style="text-align:left;"><strong>Tipo de pago:</strong> </td><td>'  + result.pedido.tipoPago + '</td>';
+            document.getElementsByClassName('pedidoTipoEntrega')[0].innerHTML = '<td style="text-align:left;"><strong>Tipo de entrega:</strong></td><td> '  + result.pedido.tipoEntrega + '</td>';
+            if(result.pedido.pagado){var pagadoHtml = '<span style="color:#33FF41" class="glyphicon glyphicon-ok"></span>'}else{var pagadoHtml = '<span style="color:#FF3633" class="glyphicon glyphicon-remove"></span>'};
+            document.getElementsByClassName('pedidoPagado')[0].innerHTML = '<td style="text-align:left;"><strong>Pagado:</strong> </td><td>'  + pagadoHtml + '</td>';
+            document.getElementsByClassName('pedidoFactura')[0].innerHTML = '<td style="text-align:left;"><strong>Factura:</strong> </td><td>'  + result.pedido.factura + '</td>';
+            if(result.pedido.entregado){var entregadoHtml = '<span style="color:#33FF41" class="glyphicon glyphicon-ok"></span>'}else{var entregadoHtml = '<span style="color:#FF3633" class="glyphicon glyphicon-remove"></span>'};
+            document.getElementsByClassName('pedidoEntregado')[0].innerHTML = '<td style="text-align:left;"><strong>Entregado:</strong> </td><td>'  + entregadoHtml + '</td>';
+            document.getElementsByClassName('pedidoFechaEntrega')[0].innerHTML = '<td style="text-align:left;"><strong>Fecha de entrega:</strong> </td><td>'  + result.pedido.fechaEntrega + '</td>';
+            document.getElementsByClassName('pedidoPrecioTotal')[0].innerHTML = '<td style="text-align:left;"><strong>Monto Total:</strong> </td><td><strong>$'  + result.pedido.carrito[0].totalPrice + '.-</strong></td>';
+
+            var productosItems = [];
+            var productosLista = "";
+            result.pedido.carrito.forEach(function(items) {
+              for (var item in items.items) {
+                productosItems.push(items.items[item]);
+              };
+            });
+            productosItems.forEach(function(productoPedido){
+              productosLista += '<tr>' + '<td>' + productoPedido.item.codigo + '</td>' + '<td>' + productoPedido.item.titulo + '</td>' + '<td>' + productoPedido.item.categoria + '</td>' + '<td>' + productoPedido.qty + '</td>' + '<td>$' + productoPedido.price + '.-</td>' + '</tr>'
+            });
+            document.getElementsByClassName('listaPedidos')[0].innerHTML = productosLista;
+          };
+        }
+    });
+  };
+</script>
 {{>footer }}

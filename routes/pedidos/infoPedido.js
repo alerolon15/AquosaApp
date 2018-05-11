@@ -22,7 +22,7 @@ router.get('/:id', function(req, res, next) {
         User.findById(pedido.userID, function(err, usuario){
           //console.log(pedido);
           var result = { usuario:usuario, pedido: pedido };
-          console.log(result)
+          //console.log(result)
 
           res.send(result);
         });

@@ -22,7 +22,6 @@ router.get('/', function(req, res, next) {
       }else{
         pedidos: null;
       };
-      console.log(pedidos);
       res.render('pedidos/lista', { usuario: req.session.user, pedidos: pedidos});
     });
   }else{

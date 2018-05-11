@@ -58,7 +58,7 @@ router.post('/',function(req,res){
 			return res.render('perfil/cambiarPassword',options);
 		};
     if(users) {
-      console.log(data);
+      //console.log(data);
 
       var usuario = new User(data);
 
