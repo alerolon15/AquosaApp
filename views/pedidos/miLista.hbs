@@ -29,8 +29,6 @@
             <td style="text-align: center;">{{# if this.entregado }}<span style="color:#33FF41" class="glyphicon glyphicon-ok"></span>{{else}}<span style="color:#FF3633" class="glyphicon glyphicon-remove"></span>{{/if}}</td>
             <td>
               <a onclick="infoPedido('{{ this._id }}')"><button  class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Ver detalles"><span class="glyphicon glyphicon-search"></span></button></a>
-              <a href="/listaPedido/editar/{{ this._id }}"><button  class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Editar"><span class="glyphicon glyphicon-pencil"></span></button></a>
-              <a href="/listaPedido/borrar/{{ this._id }}" onclick="return confirm('Esta seguro que desea borrar este pedido?')"><button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="top" title="Borrar"><span class="glyphicon glyphicon-remove"></span></button></a>
             </td>
           </tr>
         {{/each }}

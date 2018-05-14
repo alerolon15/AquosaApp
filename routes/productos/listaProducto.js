@@ -99,8 +99,8 @@ router.post('/editar/:id', function(req, res, next) {
       var titulo = req.body.titulo;
       var descripcion = req.body.descripcion;
       var precio = req.body.precio;
-      var cantidad = req.body.cantidad.toLowerCase();
-      var categoria = req.body.categoria.toLowerCase();
+      var cantidad = req.body.cantidad.toUpperCase();
+      var categoria = req.body.categoria.toUpperCase();
 
       var data = {
         codigo,

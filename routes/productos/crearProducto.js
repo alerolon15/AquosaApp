@@ -71,8 +71,8 @@ router.post('/', upload.array('files', 8), function(req, res, next) {
     var titulo = req.body.titulo;
     var descripcion = req.body.descripcion;
     var precio = req.body.precio;
-    var categoria = req.body.categoria.toLowerCase();
-    var cantidad = req.body.cantidad.toLowerCase();
+    var categoria = req.body.categoria.toUpperCase();
+    var cantidad = req.body.cantidad.toUpperCase();
     var imagenes = [];
 
     if(req.files){

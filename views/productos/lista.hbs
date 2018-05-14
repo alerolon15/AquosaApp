@@ -7,6 +7,7 @@
   <p>Lista de productos en Stock</p>
   {{{error}}}
   <hr>
+  <input class="form-control" id="myInput" type="text" placeholder="Filtrar busqueda">
   <table class="table table-striped">
     <thead>
       <tr style="text-align: center;">
@@ -17,7 +18,7 @@
         <th>cantidad</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="tablaProductos">
       {{#each productos}}
         <tr>
           <td style="text-align: center;">{{this.codigo}}</td>
@@ -34,4 +35,6 @@
     </tbody>
   </table>
 </div>
+
+
 {{>footer }}
